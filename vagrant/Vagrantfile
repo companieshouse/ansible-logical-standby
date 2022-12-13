@@ -1,0 +1,20 @@
+Vagrant.configure("2") do |config|
+  config.vm.box = "generic/oracle8"
+  config.vm.define "logical-standby"
+  config.vm.provision "ansible", playbook: "playbook.yml"
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 2048
+    v.cpus = 2
+  end
+
+  config.vm.provision "shell", inline: <<-SHELL
+    sudo dnf update
+    sudo dnf install epel-release -y
+    sudo dnf install ansible -y
+  SHELL
+
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "playbook.yml"
+    ansible.verbose = "vvv"
+  end
+end

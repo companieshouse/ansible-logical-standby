@@ -1,0 +1,21 @@
+---
+- hosts: all
+  gather_facts: yes
+  become: true
+  tasks:
+    - name: update
+      dnf:
+        name: "*"
+        state: latest
+
+    - name: install epel
+      dnf:
+        name: epel-release
+        state: latest
+
+    - name: install ansible      
+      dnf:
+        name: ansible
+        state: latest  
+
+
