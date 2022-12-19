@@ -16,6 +16,11 @@
     - name: install ansible      
       dnf:
         name: ansible
+        state: latest
+
+    - name: Install htop
+      dnf:
+        name: htop
         state: latest  
 
 
