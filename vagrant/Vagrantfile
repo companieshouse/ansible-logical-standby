@@ -9,8 +9,6 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision "shell", inline: <<-SHELL
     sudo dnf update
-    sudo dnf install epel-release -y
-    sudo dnf install ansible -y
   SHELL
 
   config.vm.provision "ansible" do |ansible|
